@@ -1,0 +1,41 @@
+{
+	"ImportPath": "github.com/yuriadams/payout",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v75",
+	"Deps": [
+		{
+			"ImportPath": "github.com/DavidHuie/quartz/go/quartz",
+			"Comment": "v0.3.0",
+			"Rev": "1634ecf3345acd3f79136c5e5bd2bdfe0ab28871"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Comment": "v1.0-96-g066abce",
+			"Rev": "066abcef408f2522f0a89952e44ab17eac176ed0"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm/dialects/postgres",
+			"Comment": "v1.0-96-g066abce",
+			"Rev": "066abcef408f2522f0a89952e44ab17eac176ed0"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/inflection",
+			"Rev": "74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "go1.0-cutoff-127-gd8eeeb8",
+			"Rev": "d8eeeb8bae8896dd8e1b7e514ab0d396c4f12a1b"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/hstore",
+			"Comment": "go1.0-cutoff-127-gd8eeeb8",
+			"Rev": "d8eeeb8bae8896dd8e1b7e514ab0d396c4f12a1b"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/oid",
+			"Comment": "go1.0-cutoff-127-gd8eeeb8",
+			"Rev": "d8eeeb8bae8896dd8e1b7e514ab0d396c4f12a1b"
+		}
+	]
+}
