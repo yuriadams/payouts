@@ -10,7 +10,7 @@ import (
   "github.com/yuriadams/payout/models"
 )
 
-func Finalize(gameId string, rankings []models.Result) {
+func Finalize(gameId string, rankings []models.Result) string{
   db := db.OpenConnection()
 
   var entrants []models.Entrant
@@ -29,6 +29,7 @@ func Finalize(gameId string, rankings []models.Result) {
   }
 
   defer db.Close()
+  return gameId
 }
 
 func merge(entrantsChannels ...<-chan models.Entrant) <-chan models.Entrant {

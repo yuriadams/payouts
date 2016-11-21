@@ -5,7 +5,7 @@ import (
   "encoding/json"
   "github.com/yuriadams/payout/models"
   "github.com/yuriadams/payout/services"
-  "github.com/DavidHuie/quartz/go/quartz"
+  // "github.com/DavidHuie/quartz/go/quartz"
 )
 
 type Finalizer struct{}
@@ -30,15 +30,15 @@ func (t *Finalizer) Finalize(args Args, response *Response) error {
 }
 
 func main() {
-  finalizer := &Finalizer{}
-  quartz.RegisterName("finalizer", finalizer)
-  quartz.Start()
+  // finalizer := &Finalizer{}
+  // quartz.RegisterName("finalizer", finalizer)
+  // quartz.Start()
 
-  // args := os.Args[1:]
-  //
-  // bytes := []byte(args[1])
-  // var rankings []models.Result
-  // json.Unmarshal(bytes, &rankings)
-  //
-  // services.Finalize(args[0], rankings)
+  args := os.Args[1:]
+
+  bytes := []byte(args[1])
+  var rankings []models.Result
+  json.Unmarshal(bytes, &rankings)
+
+  services.Finalize(args[0], rankings)
 }
