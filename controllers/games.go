@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
-  "github.com/yuriadams/payout/services"
-  "github.com/yuriadams/payout/models"
+  "github.com/yuriadams/payouts/services"
+  "github.com/yuriadams/payouts/models"
 )
 
 func extractRankings(r *http.Request) string {

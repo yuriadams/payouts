@@ -1,6 +1,6 @@
 package services
 
-import "github.com/yuriadams/payout/models"
+import "github.com/yuriadams/payouts/models"
 
 func FinalizeRank(entrant models.Entrant, results []models.Result) int{
   var rank int

@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/yuriadams/payout/controllers"
+	"github.com/yuriadams/payouts/controllers"
 )
 
 var (

@@ -2,7 +2,7 @@ package services
 
 import(
   "github.com/jinzhu/gorm"
-  "github.com/yuriadams/payout/models"
+  "github.com/yuriadams/payouts/models"
 )
 
 func FinalizeScore(entrant models.Entrant, db *gorm.DB) int{

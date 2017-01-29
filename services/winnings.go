@@ -1,7 +1,7 @@
 package services
 
 import(
-  "github.com/yuriadams/payout/models"
+  "github.com/yuriadams/payouts/models"
 )
 
 func FinalizeWinning(entrant models.Entrant, results []models.Result) int{

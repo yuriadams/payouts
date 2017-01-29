@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/yuriadams/payout",
+	"ImportPath": "github.com/yuriadams/payouts",
 	"GoVersion": "go1.7",
 	"GodepVersion": "v75",
 	"Deps": [

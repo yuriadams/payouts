@@ -1,13 +1,12 @@
-// Game.find(60735).rankings.map{|k,v| v.each_pair{|kk, vv|  v[kk] = vv.to_i }.merge(score: k.to_i).stringify_keys }.to_json
 package services
 
 import (
   "sync"
-  // "log"
-  // "fmt"
+  "log"
+  "fmt"
   "github.com/jinzhu/gorm"
-  "github.com/yuriadams/payout/db"
-  "github.com/yuriadams/payout/models"
+  "github.com/yuriadams/payouts/db"
+  "github.com/yuriadams/payouts/models"
 )
 
 func Finalize(gameId string, rankings []models.Result) string{
@@ -24,8 +23,11 @@ func Finalize(gameId string, rankings []models.Result) string{
   }
 
   for entrant := range merge(resultsChannel...) {
-    db.Model(&entrant).Unscoped().Where("id = ?", entrant.ID).Updates(models.Entrant{ScoreResult: entrant.ScoreResult, RankResult: entrant.RankResult, WinningResult: entrant.WinningResult})
-    // log.Printf(fmt.Sprintf("finalized entrant#%d (picked team #%d, rank result: %d, score result: %d, winning_result: %d)", entrant.ID, entrant.PickedTeamId, entrant.RankResult, entrant.ScoreResult, entrant.WinningResult))
+    db.Model(&entrant).Unscoped().Where("id = ?", entrant.ID).Update("ScoreResult", entrant.ScoreResult)
+    db.Model(&entrant).Unscoped().Where("id = ?", entrant.ID).Update("RankResult", entrant.RankResult)
+    db.Model(&entrant).Unscoped().Where("id = ?", entrant.ID).Update("WinningResult", entrant.WinningResult)
+
+    log.Printf(fmt.Sprintf("finalized e#%d (picked team #%d, rank result: %d, score result: %d, winning_result: %d)", entrant.ID, entrant.PickedTeamId, entrant.RankResult, entrant.ScoreResult, entrant.WinningResult))
   }
 
   defer db.Close()
@@ -55,13 +57,14 @@ func merge(entrantsChannels ...<-chan models.Entrant) <-chan models.Entrant {
   return out
 }
 
-func results(entrants <-chan models.Entrant, db *gorm.DB, results []models.Result) <-chan models.Entrant{
+func results(entrants <-chan models.Entrant, db *gorm.DB, r []models.Result) <-chan models.Entrant{
+  // use waitGroup here!!!! page 66
   resultsChannel := make(chan models.Entrant)
   go func() {
     for entrant := range entrants {
       entrant.ScoreResult = FinalizeScore(entrant, db)
-      entrant.RankResult = FinalizeRank(entrant, results)
-      entrant.WinningResult = FinalizeWinning(entrant, results)
+      entrant.RankResult = FinalizeRank(entrant, r)
+      entrant.WinningResult = FinalizeWinning(entrant, r)
       resultsChannel <- entrant
     }
     close(resultsChannel)
